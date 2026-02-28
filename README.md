@@ -11,6 +11,7 @@ All servers are written in **TypeScript** and use the official [`@modelcontextpr
 | Server | Description | Docs |
 |--------|-------------|------|
 | [`minutemail`](./servers/minutemail/) | Temporary/disposable email — create & manage mailboxes, read emails, download attachments | [README](./servers/minutemail/README.md) |
+| [`devto`](./servers/devto/) | dev.to developer blogging platform — articles, comments, users, reactions, and more | [README](./servers/devto/README.md) |
 
 ## Structure
 
