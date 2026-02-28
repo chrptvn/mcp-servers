@@ -11,16 +11,9 @@ An MCP (Model Context Protocol) server for [dev.to](https://dev.to) — the deve
 
 ## Setup
 
-### 1. Build
+### 1. Configure your MCP client
 
-```bash
-npm install
-npm run build
-```
-
-### 2. Configure your MCP client
-
-Set `DEVTO_API_KEY` as an environment variable. Pick your client below:
+No clone or build step required — the package is published on npm and runs via `npx`. Set `DEVTO_API_KEY` as an environment variable. Pick your client below:
 
 #### GitHub Copilot CLI
 
@@ -31,8 +24,8 @@ Edit `~/.copilot/mcp-config.json`:
   "mcpServers": {
     "devto": {
       "type": "local",
-      "command": "node",
-      "args": ["/path/to/mcp-servers/servers/devto/dist/index.js"],
+      "command": "npx",
+      "args": ["-y", "@chrptvn/mcp-server-devto"],
       "env": {
         "DEVTO_API_KEY": "your_api_key_here"
       },
@@ -50,8 +43,8 @@ Edit `~/Library/Application Support/Claude/claude_desktop_config.json` (macOS) o
 {
   "mcpServers": {
     "devto": {
-      "command": "node",
-      "args": ["/path/to/mcp-servers/servers/devto/dist/index.js"],
+      "command": "npx",
+      "args": ["-y", "@chrptvn/mcp-server-devto"],
       "env": {
         "DEVTO_API_KEY": "your_api_key_here"
       }
@@ -68,8 +61,8 @@ Edit `~/.cursor/mcp.json`:
 {
   "mcpServers": {
     "devto": {
-      "command": "node",
-      "args": ["/path/to/mcp-servers/servers/devto/dist/index.js"],
+      "command": "npx",
+      "args": ["-y", "@chrptvn/mcp-server-devto"],
       "env": {
         "DEVTO_API_KEY": "your_api_key_here"
       }
@@ -87,8 +80,8 @@ Edit `.vscode/mcp.json` in your workspace:
   "servers": {
     "devto": {
       "type": "stdio",
-      "command": "node",
-      "args": ["/path/to/mcp-servers/servers/devto/dist/index.js"],
+      "command": "npx",
+      "args": ["-y", "@chrptvn/mcp-server-devto"],
       "env": {
         "DEVTO_API_KEY": "your_api_key_here"
       }

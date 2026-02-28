@@ -9,16 +9,13 @@ An MCP (Model Context Protocol) server for [MinuteMail](https://minutemail.co) �
 
 ## Setup
 
-### 1. Build
+### 1. Get an API key
 
-```bash
-npm install
-npm run build
-```
+Sign up at [minutemail.co](https://minutemail.co) and create an API key from your dashboard. Keys are prefixed `mmak_`.
 
 ### 2. Configure your MCP client
 
-The API key is passed as an environment variable by your MCP client — no separate setup step required. Pick your client below:
+No clone or build step required — the package is published on npm and runs via `npx`. Pick your client below:
 
 #### GitHub Copilot CLI
 
@@ -29,8 +26,8 @@ Edit `~/.copilot/mcp-config.json`:
   "mcpServers": {
     "minutemail": {
       "type": "local",
-      "command": "node",
-      "args": ["/path/to/mcp-servers/servers/minutemail/dist/index.js"],
+      "command": "npx",
+      "args": ["-y", "@chrptvn/mcp-server-minutemail"],
       "env": {
         "MINUTEMAIL_API_KEY": "mmak_your_key_here"
       },
@@ -48,8 +45,8 @@ Edit `~/Library/Application Support/Claude/claude_desktop_config.json` (macOS) o
 {
   "mcpServers": {
     "minutemail": {
-      "command": "node",
-      "args": ["/path/to/mcp-servers/servers/minutemail/dist/index.js"],
+      "command": "npx",
+      "args": ["-y", "@chrptvn/mcp-server-minutemail"],
       "env": {
         "MINUTEMAIL_API_KEY": "mmak_your_key_here"
       }
@@ -66,8 +63,8 @@ Edit `~/.cursor/mcp.json`:
 {
   "mcpServers": {
     "minutemail": {
-      "command": "node",
-      "args": ["/path/to/mcp-servers/servers/minutemail/dist/index.js"],
+      "command": "npx",
+      "args": ["-y", "@chrptvn/mcp-server-minutemail"],
       "env": {
         "MINUTEMAIL_API_KEY": "mmak_your_key_here"
       }
@@ -85,8 +82,8 @@ Edit `.vscode/mcp.json` in your workspace:
   "servers": {
     "minutemail": {
       "type": "stdio",
-      "command": "node",
-      "args": ["/path/to/mcp-servers/servers/minutemail/dist/index.js"],
+      "command": "npx",
+      "args": ["-y", "@chrptvn/mcp-server-minutemail"],
       "env": {
         "MINUTEMAIL_API_KEY": "mmak_your_key_here"
       }
@@ -343,115 +340,3 @@ When an API call fails, the tool returns `isError: true` with a message in the f
 
 Daily quota resets at 00:00 UTC. See [MinuteMail docs](https://docs.minutemail.co) for full details.
 
-
-## Setup
-
-### 1. Get an API key
-
-Sign up at [minutemail.co](https://minutemail.co) and create an API key from your dashboard. Keys are prefixed `mmak_`.
-
-### 2. Build
-
-```bash
-npm install
-npm run build
-```
-
-### 3. Configure your MCP client
-
-The API key is passed as an environment variable by your MCP client — no separate setup step required. Pick your client below:
-
-#### Claude Desktop
-
-Edit `~/Library/Application Support/Claude/claude_desktop_config.json` (macOS) or `%APPDATA%\Claude\claude_desktop_config.json` (Windows):
-
-```json
-{
-  "mcpServers": {
-    "minutemail": {
-      "command": "node",
-      "args": ["/path/to/mcp-servers/servers/minutemail/dist/index.js"],
-      "env": {
-        "MINUTEMAIL_API_KEY": "mmak_your_key_here"
-      }
-    }
-  }
-}
-```
-
-#### Cursor
-
-Edit `~/.cursor/mcp.json`:
-
-```json
-{
-  "mcpServers": {
-    "minutemail": {
-      "command": "node",
-      "args": ["/path/to/mcp-servers/servers/minutemail/dist/index.js"],
-      "env": {
-        "MINUTEMAIL_API_KEY": "mmak_your_key_here"
-      }
-    }
-  }
-}
-```
-
-#### VS Code
-
-Edit `.vscode/mcp.json` in your workspace:
-
-```json
-{
-  "servers": {
-    "minutemail": {
-      "type": "stdio",
-      "command": "node",
-      "args": ["/path/to/mcp-servers/servers/minutemail/dist/index.js"],
-      "env": {
-        "MINUTEMAIL_API_KEY": "mmak_your_key_here"
-      }
-    }
-  }
-}
-```
-
-## Available Tools (18)
-
-### Mailboxes
-| Tool | Description |
-|------|-------------|
-| `create_mailbox` | Create a new temporary mailbox (TTL 1–60 min) |
-| `list_mailboxes` | List all active mailboxes (optional `address` filter) |
-| `get_mailbox` | Get details of a specific mailbox |
-| `delete_mailbox` | Delete a single mailbox |
-| `bulk_delete_mailboxes` | Delete multiple mailboxes atomically |
-
-### Archived Mailboxes
-| Tool | Description |
-|------|-------------|
-| `list_archived_mailboxes` | List all archived mailboxes |
-| `get_archived_mailbox` | Get details of a specific archived mailbox |
-| `reactivate_archived_mailbox` | Reactivate an archived mailbox at the same address |
-| `delete_archived_mailbox` | Permanently delete a single archived mailbox |
-| `bulk_delete_archived_mailboxes` | Permanently delete multiple archived mailboxes atomically |
-
-### Messages
-| Tool | Description |
-|------|-------------|
-| `list_messages` | List all emails in a mailbox |
-| `get_message` | Get a specific email (includes HTML/text body) |
-| `delete_message` | Delete a single email |
-| `bulk_delete_messages` | Delete multiple emails atomically |
-
-### Attachments
-| Tool | Description |
-|------|-------------|
-| `list_attachments` | List all attachments in an email |
-| `get_attachment` | Download an attachment (content as Base64) |
-| `delete_attachment` | Delete a single attachment |
-| `bulk_delete_attachments` | Delete multiple attachments atomically |
-
-## Rate Limits
-
-MinuteMail enforces per-plan rate limits. Every API response includes an `X-RateLimit-Remaining` header. See the [MinuteMail docs](https://docs.minutemail.co) for plan details.
