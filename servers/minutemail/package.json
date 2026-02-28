@@ -1,5 +1,5 @@
 {
-  "name": "@mcp-servers/minutemail",
+  "name": "@chrptvn/mcp-server-minutemail",
   "version": "1.0.0",
   "description": "MCP server for MinuteMail — temporary/disposable email platform",
   "type": "module",

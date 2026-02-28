@@ -1,5 +1,5 @@
 {
-  "name": "@mcp-servers/devto",
+  "name": "@chrptvn/mcp-server-devto",
   "version": "1.0.0",
   "description": "MCP server for dev.to — developer blogging platform powered by Forem",
   "type": "module",
