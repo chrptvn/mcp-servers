@@ -1,0 +1,23 @@
+{
+  "name": "@chrptvn/mcp-server-plex",
+  "version": "1.0.0",
+  "description": "MCP server for Plex — personal media library management",
+  "type": "module",
+  "main": "dist/index.js",
+  "bin": {
+    "mcp-server-plex": "dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "start": "node dist/index.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.6.0"
+  }
+}
